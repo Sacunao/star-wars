@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>SWAPI Client</title>
+	<!-- Compiled and minified CSS -->
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+  	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="css/main.css">
+
+</head>
+<body>
+	<section class="container">
+		<!-- <h1>SWAPI Client</h1> -->
+		<div class="valign-wrapper">
+			<img class="valign logo" src="img/logo.png" alt="logo">
+		</div>
+		<div id="padre">
+			<label>Lista de especies</label>
+			<select id="species" class="browser-default">
+				<option value="0" disabled selected>Elige tu especie</option>
+			</select>
+		</div>
+		<div id="people" class="row">
+			<div class="col s12 m6">
+			    <div class="card horizontal hoverable">
+			    	<div class="card-stacked">
+			        	<div class="card-content amber white-text">
+			          		<p>Hi, my name is <strong>____</strong></p>
+			        	</div>
+				        <div class="card-action">
+				          	<a href="#">Detalle personaje</a>
+				        </div>
+				    </div>
+		    	</div>
+		  	</div>    
+		</div>
+	</section>
+	<script src="http://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <!-- Compiled and minified JavaScript -->
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+	<script type="text/javascript" src="js/especies.js"></script>
+</body>
+</html>
