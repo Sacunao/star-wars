@@ -50,8 +50,33 @@ $(document).ready(function(){
         $.getJSON(url, formatResponse);  
     });
 
-    $("#people").on("click",".about",function(event){
-        event.preventDefault();
-        alert("hola");
-    });
+
+    var getId = function(text, pattern) {
+        var startIndexPattern = text.indexOf(pattern);
+        var length = pattern.length;
+        var result = text.substr(startIndexPattern + length + 1);
+        return result.replace("/", "");
+    };
+
+    // $("#people").on("click",".about",function(event){
+    //     event.preventDefault();
+    //     var url = $(this).attr("data-show-url");
+    //     // TO DO
+        
+    //         var id = $(this).attr("data-id");
+    //         var modal = $(this).attr("href");
+    //         $.getJSON(url).then(function(response) {
+    //             $.get(window.location.href + "views/detail.html", function (template) {
+    //                 template = template.replace("{{id}}", id)
+    //                     .replace("{{name}}", response.name)
+    //                     .replace("{{height}}", response.height);
+    //                 $("body").append(template);
+    //                 $("body").on("modal", modal, function () {
+    //                     $(this).modal("open");
+    //                 });
+    //             })
+    //         });
+    // });
+
+    // $(".modal").modal();
 });
