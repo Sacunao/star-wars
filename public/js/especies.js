@@ -35,7 +35,11 @@ $(document).ready(function(){
                         .replace("{{num}}", string)
                         .replace("{{especie}}", especie.name);
 
-            var mostrarPersonajes = function(response){
+           
+        });
+        $("#species").append(especies);
+
+         var mostrarPersonajes = function(response){
                 for(var i = 0, l = response.length; i < l; i++){
                     $.getJSON(url + string, formatResponse);
                 }
@@ -44,8 +48,6 @@ $(document).ready(function(){
              var url = "http://swapi.co/api/people/";
 
              $("#padre").on("change", ("#species"), mostrarPersonajes);
-        });
-        $("#species").append(especies);
     }
     
     $.getJSON("http://swapi.co/api/species/", nameSpecies);
