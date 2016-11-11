@@ -26,12 +26,11 @@ $(document).ready(function(){
 
     var nameSpecies = function(response){        
         var especies  = "";
+        var string = "";
         $.each(response.results, function(i, especie){
-            var string = "";
             for(var i = 0, l = especie.people.length; i < l; i++){
                 string += especie.people[i].substr(-3);
             }
-            console.log(string);
             especies += plantilla
                         .replace("{{num}}", string)
                         .replace("{{especie}}", especie.name);
