@@ -1,11 +1,8 @@
+/*common*/
 body{
 	background: url(../img/fondo3.jpg) no-repeat;
     background-size: cover;
     height: 100vh;
-}
-
-.text-white{
-	color: white;
 }
 
 .logo{
@@ -13,8 +10,17 @@ body{
 	margin: 0 auto;
 }
 
+/*index.html*/
+.logo-content{
+	margin-bottom: 4em;
+}
+
+/*all.html*/
 .total{
 	border-radius: 50px;
 	padding: 10px;
 	color: white;
 }
+/*especies.html*/
+
+
