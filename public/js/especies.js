@@ -42,14 +42,14 @@ $(document).ready(function(){
                 }
              }
 
-             var url = "http://swapi.co/api/people/";
+             var url = "//swapi.co/api/people/";
 
              $("#padre").on("change", ("#species"), mostrarPersonajes);
         });
         $("#species").append(especies);
     }
     
-    $.getJSON("http://swapi.co/api/species/", nameSpecies);
+    $.getJSON("//swapi.co/api/species/", nameSpecies);
 
 });
 
