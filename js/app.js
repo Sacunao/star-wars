@@ -51,12 +51,12 @@ $(document).ready(function(){
     });
 
 
-    // var getId = function(text, pattern) {
-    //     var startIndexPattern = text.indexOf(pattern);
-    //     var length = pattern.length;
-    //     var result = text.substr(startIndexPattern + length + 1);
-    //     return result.replace("/", "");
-    // };
+    var getId = function(text, pattern) {
+        var startIndexPattern = text.indexOf(pattern);
+        var length = pattern.length;
+        var result = text.substr(startIndexPattern + length + 1);
+        return result.replace("/", "");
+    };
 
     // $("#people").on("click",".about",function(event){
     //     event.preventDefault();
