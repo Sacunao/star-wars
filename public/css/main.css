@@ -15,6 +15,11 @@ body{
 	margin-bottom: 4em;
 }
 
+.opcion{
+	margin: 2em 1.5em;
+	background-color: #FFE81F;
+}
+
 /*all.html*/
 .total{
 	border-radius: 50px;

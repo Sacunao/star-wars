@@ -1,4 +1,4 @@
-var template = '<div class="col s12 m6">' +
+var template = '<div class="col s12 m4">' +
                 '<div class="card horizontal hoverable">' +
                     '<div class="card-stacked">' +
                         '<div class="card-content amber white-text">' +
@@ -13,17 +13,36 @@ var template = '<div class="col s12 m6">' +
 
 var plantilla = '<option value="{{num}}">{{especie}}</option>';
 
-$(document).ready(function(){
-    var formatResponse = function(response){          
-        var personajes  = "";
-        $.each(response.results, function(i, personaje){
-            personajes += template
-                          .replace("{{name}}", personaje.name)
-                          .replace("{{url}}", personaje.url);
+var nameSpecies = function (response) {
+    var string = "";
+    $.each(response.results, function (i, selected) {
+        var idSpecie= "";
+        var urlSpecies = "http://swapi.co/api/people/";
+        $.each(selected.people, function (i, id) {
+            idSpecie+= id.replace( urlSpecies, "");
         });
-        $("#people").html(personajes);
-    };
+        string += plantilla
+                   .replace("{{especie}}", selected.name)
+                   .replace("{{num}}", idSpecie.substring(0, idSpecie.length-1));
+    });
+    $("#species").html('<option value="" disabled selected>Elige una especie</option>'+ string);   
+};
+$(document).ready(function(){
+    $.getJSON("https://swapi.co/api/species/", nameSpecies);
 
+    $("#padre").on("change", "#species", function(e) {
+        var url = $(this).val().split("/"); 
+        $("#resultado").html("");
+        for (var i = 0; i < url.length; i++) {
+            $.getJSON("https://swapi.co/api/people/" + url[i] + "/", function (response) {
+                var characterSpecies = template.replace("{{name}}", response.name);
+                $("#resultado").append(characterSpecies);
+            });
+        }
+    });
+
+
+    /*otro modo de llenar el select
     var nameSpecies = function(response){        
         var especies  = "";
         $.each(response.results, function(i, especie){
@@ -31,25 +50,13 @@ $(document).ready(function(){
             for(var i = 0, l = especie.people.length; i < l; i++){
                 string += especie.people[i].substr(-3);
             }
-            
             especies += plantilla
                         .replace("{{num}}", string)
                         .replace("{{especie}}", especie.name);
-
-            var mostrarPersonajes = function(response){
-                for(var i = 0, l = response.length; i < l; i++){
-                    $.getJSON(url + string, formatResponse);
-                }
-             }
-
-             var url = "http://swapi.co/api/people/";
-
-             $("#padre").on("change", ("#species"), mostrarPersonajes);
         });
         $("#species").append(especies);
     }
-    
-    $.getJSON("http://swapi.co/api/species/", nameSpecies);
+        $.getJSON("http://swapi.co/api/species/", nameSpecies);*/
 
 });
 
