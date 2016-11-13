@@ -20,7 +20,7 @@ $(document).ready(function(){
                           .replace("{{name}}", personaje.name)
                           .replace("{{url}}", personaje.url);
         });
-        $("#people").html(personajes);
+        /*$("#people").html(personajes);
         $("#next").attr("data-url", response.next);
         $("#previous").attr("data-url", response.previous);
         if(!response.next){
@@ -33,7 +33,26 @@ $(document).ready(function(){
             $("#previous").fadeOut();
         } else {
             $("#previous").fadeIn();
+        }*/
+        if(response.next != null)
+            var nextHttps = response.next.replace("http", "https");
+        if(response.previous != null)
+            var previousHttps = response.previous.replace("http", "https");
+        $("#people").html(personajes);
+        $("#next").attr("data-url", nextHttps);
+        $("#prev").attr("data-url", previousHttps);
+
+        if(!response.next){
+            $("#next").fadeOut();
+        }else{
+            $("#next").fadeIn();
         }
+        if(!response.previous){
+            $("#prev").fadeOut();
+        }else{
+            $("#prev").fadeIn();
+        }
+
     };
 
     $.getJSON("//swapi.co/api/people/", formatResponse);
