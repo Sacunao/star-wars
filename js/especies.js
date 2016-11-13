@@ -42,8 +42,8 @@ $(document).ready(function(){
 $("#padre").on("change", "#species", function(e) {
     var url = $(this).val().split("/");
     $("#people").html("");
-    for(var i=0; i<idNum.length; i++){
-        $.getJSON("https://swapi.co/api/people/"+ idNum[i] + "/", listarNombres);
+    for(var i = 0; i < url.length; i++){
+        $.getJSON("https://swapi.co/api/people/"+ url[i] + "/", listarNombres);
     }; 
     /*$("#resultado").html("");
     for (var i = 0; i < url.length; i++) {
