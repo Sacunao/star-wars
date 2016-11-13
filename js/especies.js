@@ -32,10 +32,11 @@ $(document).ready(function(){
 
     $("#padre").on("change", "#species", function(e) {
         var url = $(this).val().split("/"); 
+        var data = response.name.replace("http", "");
         $("#resultado").html("");
         for (var i = 0; i < url.length; i++) {
             $.getJSON("https://swapi.co/api/people/" + url[i] + "/", function (response) {
-                var characterSpecies = template.replace("{{name}}", response.name);
+                var characterSpecies = template.replace("{{name}}", data);
                 $("#resultado").append(characterSpecies);
             });
         }
