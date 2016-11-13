@@ -28,7 +28,7 @@ var nameSpecies = function (response) {
     $("#species").html('<option value="" disabled selected>Elige una especie</option>'+ string);   
 };
 $(document).ready(function(){
-    $.getJSON("https://swapi.co/api/species/", nameSpecies);
+    $.getJSON("//swapi.co/api/species/", nameSpecies);
 
     $("#padre").on("change", "#species", function(e) {
         var url = $(this).val().split("/"); 
