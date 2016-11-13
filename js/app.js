@@ -34,10 +34,9 @@ $(document).ready(function(){
         } else {
             $("#previous").fadeIn();
         }*/
-        if(response.next != null)
-            var nextHttps = response.next.replace("http", "https");
-        if(response.previous != null)
-            var previousHttps = response.previous.replace("http", "https");
+        var nextHttps = response.next.replace("http", "https");
+        var previousHttps = response.previous.replace("http", "https");
+        
         $("#people").html(personajes);
         $("#next").attr("data-url", nextHttps);
         $("#prev").attr("data-url", previousHttps);
