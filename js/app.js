@@ -10,50 +10,37 @@ var template = '<div class="col s12 m6">' +
                     '</div>' +
                 '</div>' +
             '</div>';   
+var formatResponse = function(response){          
+    $("#total").text(response.results.length);
+    var personajes  = "";
+    $.each(response.results, function(i, personaje){
+        personajes += template
+                      .replace("{{name}}", personaje.name)
+                      .replace("{{url}}", personaje.url);
+    });
+    
+    if(response.next != null)
+        var nextHttps = response.next.replace("http", "https");
+    if(response.previous != null)
+        var previousHttps = response.previous.replace("http", "https");
+    $("#people").html(personajes);
+    $("#next").attr("data-url", nextHttps);
+    $("#prev").attr("data-url", previousHttps);
+
+    if(!response.next){
+        $("#next").fadeOut();
+    }else{
+        $("#next").fadeIn();
+    }
+    if(!response.previous){
+        $("#prev").fadeOut();
+    }else{
+        $("#prev").fadeIn();
+    }
+
+};
 
 $(document).ready(function(){
-    var formatResponse = function(response){          
-        $("#total").text(response.results.length);
-        var personajes  = "";
-        $.each(response.results, function(i, personaje){
-            personajes += template
-                          .replace("{{name}}", personaje.name)
-                          .replace("{{url}}", personaje.url);
-        });
-        /*$("#people").html(personajes);
-        $("#next").attr("data-url", response.next);
-        $("#previous").attr("data-url", response.previous);
-        if(!response.next){
-            $("#next").fadeOut();
-        } else {
-            $("#next").fadeIn()
-        }
-
-        if(!response.previous){
-            $("#previous").fadeOut();
-        } else {
-            $("#previous").fadeIn();
-        }*/
-        var nextHttps = response.next.replace("http", "https");
-        var previousHttps = response.previous.replace("http", "https");
-        
-        $("#people").html(personajes);
-        $("#next").attr("data-url", nextHttps);
-        $("#prev").attr("data-url", previousHttps);
-
-        if(!response.next){
-            $("#next").fadeOut();
-        }else{
-            $("#next").fadeIn();
-        }
-        if(!response.previous){
-            $("#prev").fadeOut();
-        }else{
-            $("#prev").fadeIn();
-        }
-
-    };
-
     $.getJSON("//swapi.co/api/people/", formatResponse);
 
     $("#next").click(function(event){
