@@ -25,24 +25,39 @@ var nameSpecies = function (response) {
                    .replace("{{especie}}", selected.name)
                    .replace("{{num}}", idSpecie.substring(0, idSpecie.length-1));
     });
-    $("#species").html('<option value="" disabled selected>Elige una especie</option>'+ string);   
+    $("#species").html('<option value="" disabled selected>Elige una especie</option>');
+    $("#species").append(string);   
 };
+
+var listarNombres = function(response){
+    var templateCompleto = template.replace("{{name}}", response.name);
+    $("#people").append(templateCompleto);
+
+}
+
 $(document).ready(function(){
     $.getJSON("//swapi.co/api/species/", nameSpecies);
+});
 
-    $("#padre").on("change", "#species", function(e) {
-        var url = $(this).val().split("/"); 
-        $("#resultado").html("");
-        for (var i = 0; i < url.length; i++) {
-            $.getJSON("https://swapi.co/api/people/" + url[i] + "/", function (response) {
-                var characterSpecies = template.replace("{{name}}", response.name);
-                $("#resultado").append(characterSpecies);
-            });
-        }
-    });
+$("#padre").on("change", "#species", function(e) {
+    var url = $(this).val().split("/");
+    $("#people").html("");
+    for(var i=0; i<idNum.length; i++){
+        $.getJSON("https://swapi.co/api/people/"+ idNum[i] + "/", listarNombres);
+    }; 
+    /*$("#resultado").html("");
+    for (var i = 0; i < url.length; i++) {
+        $.getJSON("https://swapi.co/api/people/" + url[i] + "/", function (response) {
+            var characterSpecies = template.replace("{{name}}", response.name);
+            $("#resultado").append(characterSpecies);
+        });
+    }*/
+});
+
+  
 
 
-    /*otro modo de llenar el select
+/*otro modo de llenar el select
     var nameSpecies = function(response){        
         var especies  = "";
         $.each(response.results, function(i, especie){
@@ -57,8 +72,3 @@ $(document).ready(function(){
         $("#species").append(especies);
     }
         $.getJSON("http://swapi.co/api/species/", nameSpecies);*/
-
-});
-
-
-
