@@ -25,7 +25,7 @@ var formatResponse = function(response){
         var previousHttps = response.previous.replace("http", "https");
     $("#people").html(personajes);
     $("#next").attr("data-url", nextHttps);
-    $("#prev").attr("data-url", previousHttps);
+    $("#previous").attr("data-url", previousHttps);
 
     if(!response.next){
         $("#next").fadeOut();
@@ -33,9 +33,9 @@ var formatResponse = function(response){
         $("#next").fadeIn();
     }
     if(!response.previous){
-        $("#prev").fadeOut();
+        $("#previous").fadeOut();
     }else{
-        $("#prev").fadeIn();
+        $("#previous").fadeIn();
     }
 
 };
