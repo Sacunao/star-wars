@@ -40,10 +40,10 @@ $(document).ready(function(){
 });
 
 $("#padre").on("change", "#species", function(e) {
-    var url = $(this).val().split("/");
+    var idNum = $(this).val().split("/");
     $("#people").html("");
-    for(var i = 0; i < url.length; i++){
-        $.getJSON("https://swapi.co/api/people/"+ url[i] + "/", listarNombres);
+    for(var i = 0; i < idNum.length; i++){
+        $.getJSON("https://swapi.co/api/people/"+ idNum[i] + "/", listarNombres);
     }; 
     /*$("#resultado").html("");
     for (var i = 0; i < url.length; i++) {
@@ -53,8 +53,6 @@ $("#padre").on("change", "#species", function(e) {
         });
     }*/
 });
-
-  
 
 
 /*otro modo de llenar el select
